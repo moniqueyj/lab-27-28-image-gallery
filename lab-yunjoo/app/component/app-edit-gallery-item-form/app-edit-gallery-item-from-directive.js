@@ -2,13 +2,13 @@
 
 const angular = require('angular');
 angular.module('demoApp')
-.directive('appEditGalleryItemForm', function(){
+.directive('appGalleryItemForm', function(){
   return {
     restrict: 'E',
     replace: true,
     scope: {
-      title: '=',
-      desc: '='
+      btnTitle: '@',
+      submit: '&'
     },
     template: require('./app-edit-gallery-item-from.html')
   };

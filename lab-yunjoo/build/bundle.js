@@ -51,17 +51,16 @@
 	__webpack_require__(1);
 	__webpack_require__(2);
 	// npm moudles
-	var angular = __webpack_require__(7);
+	var angular = __webpack_require__(14);
 	// app modules
 	// create angular module
 	angular.module('demoApp', []);
 	// angular module extensions
-	__webpack_require__(9);
-	__webpack_require__(14);
-	__webpack_require__(20);
+	__webpack_require__(16);
+	__webpack_require__(22);
 	__webpack_require__(27);
 	__webpack_require__(32);
-	//require('./controller/example-parrent.js')
+	__webpack_require__(37);
 
 /***/ },
 /* 1 */
@@ -80,15 +79,22 @@
 /* 4 */,
 /* 5 */,
 /* 6 */,
-/* 7 */
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(8);
+	__webpack_require__(15);
 	module.exports = angular;
 
 
 /***/ },
-/* 8 */
+/* 15 */
 /***/ function(module, exports) {
 
 	/**
@@ -31861,80 +31867,14 @@
 	!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 9 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(10);
-	__webpack_require__(12);
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var angular = __webpack_require__(7);
-
-	angular.module('demoApp').directive('appMain', function () {
-	  return {
-	    restrict: 'E',
-	    replace: true,
-	    template: __webpack_require__(11)
-	  };
-	});
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	module.exports = "\n<main class=\"app-main\">\n  <app-gallery> </app-gallery>\n</main>\n";
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 13 */,
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(15);
 	__webpack_require__(17);
 	__webpack_require__(18);
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var angular = __webpack_require__(7);
-
-	angular.module('demoApp').directive('appHello', function () {
-	  return {
-	    restrict: 'E',
-	    replace: true,
-	    scope: {
-	      example: '@'
-	    },
-	    controller: 'AppHelloController',
-	    controllerAs: 'appHelloCtrl',
-	    bindToController: true,
-	    template: __webpack_require__(16)
-	  };
-	});
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class = \"app-hello\">\n  <h1>told ya so</h1>\n  <p>{{ appHelloCtrl.example}}</p>\n</div>\n";
+	__webpack_require__(20);
 
 /***/ },
 /* 17 */
@@ -31942,55 +31882,62 @@
 
 	'use strict';
 
-	var angular = __webpack_require__(7);
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	angular.module('demoApp').controller('AppHelloController', [AppHelloController]);
+	var angular = __webpack_require__(14);
 
-	function AppHelloController() {
-	  this.name = 'content sould show this string';
+	angular.module('demoApp').controller('AppMainController', [AppMainController]);
+
+	function AppMainController() {
+	  this.images = [];
+	  this.addImage = function (image) {
+	    if ((typeof image === 'undefined' ? 'undefined' : _typeof(image)) === 'object' && image.title && image.imageUrl) {
+	      this.images.push(image);
+	    }
+	  };
 	}
 
 /***/ },
 /* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var angular = __webpack_require__(14);
+
+	angular.module('demoApp').directive('appMain', function () {
+	  return {
+	    restrict: 'E',
+	    replace: true,
+	    template: __webpack_require__(19),
+	    controller: 'AppMainController',
+	    controllerAs: 'appMainCtrl',
+	    bindToController: true,
+	    scope: {}
+	  };
+	});
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<main class=\"app-main\">\n  <app-gallery-item-form btn-title =\"Add image\" submit = \"appMainCtrl.addImage(image)\"> </app-gallery-item-form>\n\n  <div class = \"app-gallery-container\">\n    <app-gallery-item ng-repeat = \"item in appMainCtrl.images\" image=\"item\"></app-gallery-item>    \n  </div>\n</main>\n";
+
+/***/ },
+/* 20 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 19 */,
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(21);
-	__webpack_require__(23);
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var angular = __webpack_require__(7);
-
-	angular.module('demoApp').directive('appGallery', function () {
-	  return {
-	    restrict: 'E',
-	    replace: true,
-	    scope: {},
-	    controller: 'AppGalleryController',
-	    controllerAs: 'appGalleryCtrl',
-	    bindToController: true,
-	    template: __webpack_require__(22)
-	  };
-	});
-
-/***/ },
+/* 21 */,
 /* 22 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "<section class=\"app-gallery\">\n\n  <form novalidate ng-submit=\"appGalleryCtrl.addGalleryItem()\">\n    <label for=\"title\">title: </label>\n    <input name=\"title\" type=\"text\" ng-model=\"appGalleryCtrl.galleryItem.title\">\n    <label for=\"desc\">desc: </label>\n    <input type=\"text\" ng-model=\"appGalleryCtrl.galleryItem.desc\">\n    <label for=\"imgSrc\">image source:</label>\n    <input type=\"text\" ng-model=\"appGalleryCtrl.galleryItem.imgSrc\">\n    <input type=\"submit\" value=\"create item\">\n  </form>\n  <ul>\n    <!-- create a app-gallery-item for each image in the controllers images array -->\n\n    <app-gallery-item ng-repeat=\"item in appGalleryCtrl.images\" title=\"{{item.title}}\" desc=\"{{item.desc}}\" img-src=\"{{item.imgSrc}}\"> </app-gallery-item>\n  </ul>\n</section>\n";
+	'use strict';
+
+	__webpack_require__(23);
+	__webpack_require__(25);
 
 /***/ },
 /* 23 */
@@ -31998,56 +31945,33 @@
 
 	'use strict';
 
-	var angular = __webpack_require__(7);
-
-	angular.module('demoApp').controller('AppGalleryController', [AppGalleryController]);
-
-	function AppGalleryController() {
-	  this.galleryItem = {
-	    title: '',
-	    desc: '',
-	    imgSrc: ''
+	var angular = __webpack_require__(14);
+	angular.module('demoApp').directive('appModalImage', function () {
+	  return {
+	    restrict: 'E',
+	    replace: true,
+	    template: __webpack_require__(24),
+	    scope: {
+	      imageUrl: '=',
+	      closeModal: '&'
+	    }
 	  };
-
-	  this.addGalleryItem = function () {
-	    this.images.push(angular.copy(this.galleryItem));
-	    this.galleryItem = { title: '', desc: '', imgSrc: '' };
-	  };
-	  console.log('add GalleryItem', this.addGalleryItem);
-	  this.images = [{
-	    title: 'Flower One',
-	    desc: 'this is dat typa flow pow dat gunna make dem brds happi yo',
-	    imgSrc: __webpack_require__(24)
-	  }, {
-	    title: 'Flower Two',
-	    desc: 'i dont think i cant maby not do somthin like that if i would',
-	    imgSrc: __webpack_require__(25)
-	  }, {
-	    title: 'Flower Three',
-	    desc: '#yolo #swag #hax',
-	    imgSrc: __webpack_require__(26)
-	  }];
-	}
+	});
 
 /***/ },
 /* 24 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	module.exports = __webpack_require__.p + "img/blueflower1-93034ce31ceb876e0794a676bcb5d845.jpeg";
+	module.exports = "<div class = \"app-modal-image\">\n  <div ng-click=\"closeModel()\">\n  </div>\n\n  <main>\n    <h1>Modal View</h1>\n    <img ng-src=\"{{imageUrl}}\" alt=\"flower\" width=\"300\" height=\"300s\">\n  </main>\n</div>\n";
 
 /***/ },
 /* 25 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	module.exports = __webpack_require__.p + "img/greenflower-b4da174cf5781f429f8925aa4b037098.jpeg";
-
-/***/ },
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "img/mixedflower-6126c9aff3800f97824ed290f6ae483b.jpeg";
+	// removed by extract-text-webpack-plugin
 
 /***/ },
+/* 26 */,
 /* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -32062,17 +31986,16 @@
 
 	'use strict';
 
-	var angular = __webpack_require__(7);
-	angular.module('demoApp').directive('appGalleryItem', function () {
+	var angular = __webpack_require__(14);
+
+	angular.module('demoApp').directive('appShowModalForm', function () {
 	  return {
 	    restrict: 'E',
 	    replace: true,
+	    template: __webpack_require__(29),
 	    scope: {
-	      imgSrc: '@',
-	      title: '@',
-	      desc: '@'
-	    },
-	    template: __webpack_require__(29)
+	      showImage: '&'
+	    }
 	  };
 	});
 
@@ -32080,7 +32003,7 @@
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<li class =\"app-gallery-item\">\n  <img ng-src=\"{{imgSrc}}\">\n  <h2>{{ title }}</h2>\n  <p>{{desc}}</p>\n  <app-edit-gallery-item-form title =\"title\" desc=\"desc\"></app-edit-gallery-item-form>\n</li>\n";
+	module.exports = "<form class = \"app-show-modal-form form-inline\" novalidation ng-submit=\"showImage({image: imageUrl})\">\n  <div class =\"form-group\">\n    <label for=\"imageUrl\">Image Url:</label>\n    <input type=\"text\" name =\"imageUrl\" ng-model = \"imageUrl\">\n  </div>\n  <button class = \"btn btn-primary\" type =\"submit\">Show Image</button>\n</form>\n";
 
 /***/ },
 /* 30 */
@@ -32096,6 +32019,7 @@
 	'use strict';
 
 	__webpack_require__(33);
+	__webpack_require__(35);
 
 /***/ },
 /* 33 */
@@ -32103,14 +32027,14 @@
 
 	'use strict';
 
-	var angular = __webpack_require__(7);
-	angular.module('demoApp').directive('appEditGalleryItemForm', function () {
+	var angular = __webpack_require__(14);
+	angular.module('demoApp').directive('appGalleryItemForm', function () {
 	  return {
 	    restrict: 'E',
 	    replace: true,
 	    scope: {
-	      title: '=',
-	      desc: '='
+	      btnTitle: '@',
+	      submit: '&'
 	    },
 	    template: __webpack_require__(34)
 	  };
@@ -32120,7 +32044,76 @@
 /* 34 */
 /***/ function(module, exports) {
 
-	module.exports = "<form novalidate class = \"app-edit-gallery-item-form\">\n  <label for = \"title\">Title: </label>\n  <input name = \"title\" type=\"text\" ng-model = \"title\">\n  <label for=\"desc\">Description</label>\n  <input for = \"desc\" type=\"text\" ng-model=\"desc\">\n</form>\n";
+	module.exports = "<form ng-submit =\"submit({ image: {title: title, imageUrl: imageUrl}})\"\n  novalidate class = \"form-inline app-edit-gallery-item-form\">\n  <div class = \"form-group\">\n    <label for = \"title\">Title : </label>\n    <input name = \"title\" type=\"text\" ng-model = \"title\">\n  </div>\n  <div class = \"form-group\">\n    <label for=\"imageUrl\">Url : </label>\n    <input type=\"text\" name = \"imageUrl\" ng-model = \"imageUrl\">\n  </div>\n  <button class = \"btn btn-default\" type = \"submit\">{{btnTitle}}</button>\n</form>\n";
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 36 */,
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(38);
+	__webpack_require__(39);
+	__webpack_require__(41);
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var angular = __webpack_require__(14);
+	angular.module('demoApp').controller('AppGalleryItemController', [AppGalleryItemController]);
+
+	function AppGalleryItemController() {
+	  this.updateImage = function (image) {
+	    var _this = this;
+
+	    Object.keys(this.image).forEach(function (key) {
+	      if (image[key]) _this.image[key] = image[key];
+	    });
+	  };
+	}
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var angular = __webpack_require__(14);
+	angular.module('demoApp').directive('appGalleryItem', function () {
+	  return {
+	    restrict: 'E',
+	    replace: true,
+	    controller: 'AppGalleryItemController',
+	    controllerAs: 'appGalleryItemCtrl',
+	    bindToController: true,
+	    scope: {
+	      image: '='
+	    },
+	    template: __webpack_require__(40)
+	  };
+	});
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class =\"app-gallery-item\">\n  <img ng-src=\"{{appGalleryItemCtrl.image.imageUrl}}\">\n  <h2>{{ appGalleryItemCtrl.image.title }}</h2>\n  <app-edit-gallery-item-form submit=\"appGalleryItemCtrl.updateImages(image)\" btn-title =\"update image\"></app-edit-gallery-item-form>\n</div>\n";
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

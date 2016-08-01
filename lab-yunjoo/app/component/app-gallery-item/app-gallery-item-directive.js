@@ -6,10 +6,11 @@ angular.module('demoApp')
   return {
     restrict:'E',
     replace: true,
+    controller: 'AppGalleryItemController',
+    controllerAs : 'appGalleryItemCtrl',
+    bindToController: true,
     scope: {
-      imgSrc:'@',
-      title: '@',
-      desc: '@'
+      image: '='
     },
     template: require('./app-gallery-item.html')
   };
